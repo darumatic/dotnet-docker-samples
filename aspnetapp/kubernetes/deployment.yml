@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1  
+kind: Deployment
+metadata:
+  name: hello-aspnet-core
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello-aspnet-core
+    spec:
+      containers:
+      - name: hello-aspnet-core
+        image: registry.gitlab.com/darumatic/daruweb/hello-aspnet-core
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: myregistrykey
